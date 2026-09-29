@@ -1,0 +1,704 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BREAK THE LINE | MBCOM Partner Acceleration Program 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Barlow+Condensed:wght@300;400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Share+Tech+Mono&display=swap');
+
+:root{
+  --black:#040507;
+  --dark:#080A0E;
+  --panel:#0C0F15;
+  --panel2:#11151D;
+  --green:#FF2D2D;
+  --green-dim:#CC1E1E;
+  --white:#FFFFFF;
+  --gray:#6B7280;
+  --lgray:#9CA3AF;
+  --red:#FF2D2D;
+  --gold:#FFC700;
+  --line:rgba(255,45,45,0.18);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:#fff;font-family:'Barlow',sans-serif;overflow-x:hidden}
+
+/* SCANLINES */
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.06) 3px,rgba(0,0,0,0.06) 4px);pointer-events:none;z-index:9999}
+
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:#000}
+::-webkit-scrollbar-thumb{background:var(--green)}
+
+/* ══ NAV ══ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  height:58px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 36px;
+  background:rgba(4,5,7,0.92);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--line);
+}
+.nav-logo{font-family:'Orbitron',monospace;font-weight:900;font-size:15px;letter-spacing:3px;color:#fff;text-decoration:none}
+.nav-logo b{color:var(--green)}
+.nav-links{display:flex;gap:26px;list-style:none}
+.nav-links a{color:var(--gray);text-decoration:none;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;transition:.2s}
+.nav-links a:hover{color:var(--green)}
+.nav-live{display:flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--red);letter-spacing:2px}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--red);animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ══ HERO ══ */
+#hero{
+  position:relative;min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:100px 40px 60px;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  opacity:.55;
+}
+@keyframes heroZoom{from{transform:scale(1)}to{transform:scale(1.08)}}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(4,5,7,0.95) 0%,rgba(4,5,7,0.7) 40%,rgba(4,5,7,0.4) 100%),
+             linear-gradient(to top,var(--black) 0%,transparent 30%);
+}
+
+.hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:7px 18px;
+  border:1px solid var(--line);
+  background:rgba(255,45,45,0.05);
+  font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:3px;
+  color:var(--green);text-transform:uppercase;margin-bottom:36px;
+  animation:fadeUp .8s ease both;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+.hero-title{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(64px,11vw,150px);
+  line-height:.88;letter-spacing:-2px;text-transform:uppercase;
+  animation:fadeUp 1s ease .15s both;
+  position:relative;
+}
+.hero-title .break-word{display:block;color:#fff}
+.hero-title .line-word{
+  display:block;color:transparent;
+  -webkit-text-stroke:2px var(--green);
+  position:relative;
+}
+/* THE BREAKING LINE */
+.the-line{
+  position:relative;
+  height:3px;width:100%;max-width:700px;
+  background:linear-gradient(to right,var(--green) 0%,var(--green) 42%,transparent 42%,transparent 58%,var(--green) 58%,var(--green) 100%);
+  margin:36px 0;
+  animation:fadeUp 1s ease .3s both;
+}
+.the-line::before{
+  content:'';position:absolute;left:42%;top:-6px;
+  width:16%;height:15px;
+  border-left:2px solid var(--green);
+  border-right:2px solid var(--green);
+  transform:skewX(-20deg);
+  opacity:.6;
+}
+
+.hero-sub{
+  font-family:'Share Tech Mono',monospace;
+  font-size:14px;letter-spacing:4px;color:var(--lgray);
+  text-transform:uppercase;margin-bottom:12px;
+  animation:fadeUp 1s ease .4s both;
+}
+.hero-tagline{
+  font-size:16px;color:var(--gray);max-width:480px;line-height:1.7;
+  margin-bottom:44px;
+  animation:fadeUp 1s ease .5s both;
+}
+
+.hero-stats{
+  display:flex;gap:1px;flex-wrap:wrap;
+  margin-bottom:44px;
+  animation:fadeUp 1s ease .6s both;
+}
+.hstat{
+  padding:16px 30px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.06);
+  border-bottom:2px solid var(--green);
+}
+.hstat-val{font-family:'Orbitron',monospace;font-weight:700;font-size:26px;color:var(--green);display:block;line-height:1}
+.hstat-lbl{font-size:10px;letter-spacing:2px;color:var(--gray);text-transform:uppercase;margin-top:5px;display:block}
+
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp 1s ease .7s both}
+.btn-main{
+  padding:15px 42px;background:var(--green);color:#fff;
+  font-family:'Orbitron',monospace;font-weight:900;font-size:12px;letter-spacing:3px;
+  text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;
+  clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);
+  transition:.3s;box-shadow:0 0 40px rgba(255,45,45,0.3);
+}
+.btn-main:hover{box-shadow:0 0 70px rgba(255,45,45,0.6);transform:translateY(-2px)}
+.btn-ghost{
+  padding:15px 42px;background:transparent;color:#fff;
+  font-family:'Orbitron',monospace;font-weight:700;font-size:12px;letter-spacing:3px;
+  text-transform:uppercase;text-decoration:none;
+  border:1px solid rgba(255,255,255,0.2);cursor:pointer;transition:.3s;
+}
+.btn-ghost:hover{border-color:var(--green);color:var(--green)}
+
+/* ══ TICKER ══ */
+.ticker{
+  position:relative;z-index:5;
+  background:var(--green);
+  padding:12px 0;overflow:hidden;
+  border-top:1px solid rgba(0,0,0,.2);
+}
+.ticker-inner{display:flex;animation:tick 22s linear infinite;white-space:nowrap}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker span{
+  font-family:'Orbitron',monospace;font-weight:900;font-size:12px;
+  letter-spacing:3px;text-transform:uppercase;color:#fff;padding:0 34px;
+}
+
+/* ══ SECTION COMMON ══ */
+.sec{position:relative;padding:100px 40px}
+.sec-inner{max-width:1200px;margin:0 auto}
+.sec-tag{
+  font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:4px;
+  color:var(--green);text-transform:uppercase;margin-bottom:14px;
+}
+.sec-title{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(36px,5vw,64px);letter-spacing:-1px;
+  text-transform:uppercase;line-height:.95;margin-bottom:16px;
+}
+.sec-sub{color:var(--gray);font-size:15px;line-height:1.7;max-width:560px}
+
+/* ══ LIVE LEADERBOARD ══ */
+#standings{background:var(--dark);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.lb-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:36px;flex-wrap:wrap;gap:16px}
+.lb-update{
+  display:flex;align-items:center;gap:10px;
+  font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--green);letter-spacing:2px;
+  padding:8px 16px;border:1px solid var(--line);background:rgba(255,45,45,0.04);
+}
+
+.lb-row{
+  display:grid;
+  grid-template-columns:60px 1fr 130px 240px;
+  align-items:center;gap:20px;
+  padding:0 20px;
+  height:64px;
+  background:var(--panel);
+  border:1px solid rgba(255,255,255,0.04);
+  margin-bottom:2px;
+  transition:.3s;position:relative;overflow:hidden;
+}
+.lb-row:hover{background:var(--panel2);border-color:var(--line)}
+.lb-row.podium-1{border-left:3px solid var(--gold);background:linear-gradient(to right,rgba(255,199,0,0.05),var(--panel))}
+.lb-row.podium-2{border-left:3px solid #C0C0C0}
+.lb-row.podium-3{border-left:3px solid #CD7F32}
+
+.lb-pos{
+  font-family:'Orbitron',monospace;font-weight:900;font-size:22px;
+  color:var(--gray);text-align:center;
+}
+.podium-1 .lb-pos{color:var(--gold)}
+.podium-2 .lb-pos{color:#C0C0C0}
+.podium-3 .lb-pos{color:#CD7F32}
+
+.lb-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:17px;letter-spacing:.5px}
+.lb-name small{display:block;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--gray);letter-spacing:2px;margin-top:2px}
+
+.lb-growth{
+  font-family:'Orbitron',monospace;font-weight:900;font-size:22px;
+  color:var(--green);text-align:right;
+}
+.lb-growth small{font-size:11px;color:var(--gray);font-weight:400}
+
+.lb-bar{position:relative;height:8px;background:rgba(255,255,255,0.05)}
+.lb-fill{
+  height:100%;
+  background:linear-gradient(to right,var(--green-dim),var(--green));
+  width:0;transition:width 2s cubic-bezier(.25,.46,.45,.94);
+  position:relative;
+}
+.lb-fill::after{content:'';position:absolute;right:0;top:-2px;width:3px;height:12px;background:#fff;box-shadow:0 0 10px var(--green)}
+/* target line at 100% */
+.lb-bar::before{content:'';position:absolute;right:0;top:-4px;bottom:-4px;width:2px;background:rgba(255,255,255,0.25);z-index:2}
+
+/* ══ THE PRIZES ══ */
+#prizes{position:relative;overflow:hidden}
+.prizes-bg{position:absolute;inset:0;background:url('podium.png') center/cover no-repeat;opacity:.14}
+.prizes-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,var(--black),transparent 30%,transparent 70%,var(--black))}
+.prizes-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;position:relative;z-index:2;margin-top:56px}
+.prize{
+  padding:44px 26px;text-align:center;
+  background:rgba(12,15,21,0.9);
+  border:1px solid rgba(255,255,255,0.06);
+  border-top:3px solid;
+  transition:.4s;position:relative;overflow:hidden;
+}
+.prize:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(0,0,0,.6)}
+.prize:nth-child(1){border-top-color:var(--green)}
+.prize:nth-child(2){border-top-color:var(--gold)}
+.prize:nth-child(3){border-top-color:#FF2D78}
+.prize:nth-child(4){border-top-color:#00BFFF}
+.prize-cat{
+  font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:3px;
+  color:var(--gray);text-transform:uppercase;display:block;margin-bottom:18px;
+}
+.prize-icon{font-size:44px;display:block;margin-bottom:18px}
+.prize-name{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:26px;
+  letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:10px;
+}
+.prize:nth-child(1) .prize-name{color:var(--green)}
+.prize:nth-child(2) .prize-name{color:var(--gold)}
+.prize:nth-child(3) .prize-name{color:#FF2D78}
+.prize:nth-child(4) .prize-name{color:#00BFFF}
+.prize-desc{font-size:13px;color:var(--gray);line-height:1.6}
+
+/* ══ THE TRACK (checkpoints) ══ */
+#track{background:var(--dark);border-top:1px solid var(--line)}
+.checkpoints{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;margin-top:56px;position:relative}
+.checkpoints::before{
+  content:'';position:absolute;top:31px;left:8%;right:8%;height:2px;
+  background:linear-gradient(to right,var(--green),var(--green-dim));
+  z-index:0;
+}
+.cpt{padding:0 16px;text-align:center;position:relative;z-index:1}
+.cpt-node{
+  width:62px;height:62px;border-radius:50%;
+  border:2px solid var(--green);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 18px;
+  background:var(--black);
+  font-family:'Orbitron',monospace;font-weight:900;font-size:15px;color:var(--green);
+  box-shadow:0 0 25px rgba(255,45,45,0.25);
+}
+.cpt:last-child .cpt-node{background:var(--green);color:#fff}
+.cpt-name{
+  font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:17px;
+  letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:8px;
+}
+.cpt-desc{font-size:12px;color:var(--gray);line-height:1.6}
+
+/* ══ RACE VISUAL ══ */
+#racefeel{position:relative;min-height:60vh;display:flex;align-items:center;overflow:hidden;padding:100px 40px}
+.racefeel-bg{position:absolute;inset:0;background:url('starting-grid.png') center/cover no-repeat;animation:heroZoom 18s ease-in-out infinite alternate}
+.racefeel-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(4,5,7,0.92) 0%,rgba(4,5,7,0.5) 60%,rgba(4,5,7,0.3) 100%)}
+.racefeel-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%}
+.racefeel-quote{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(32px,5vw,60px);line-height:1.05;text-transform:uppercase;
+  max-width:700px;
+}
+.racefeel-quote em{color:var(--green);font-style:normal}
+
+/* ══ RULES ══ */
+.rules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:56px}
+.rule{
+  padding:30px 26px;
+  background:var(--panel);
+  border:1px solid rgba(255,255,255,0.05);
+  transition:.3s;
+}
+.rule:hover{border-color:var(--line)}
+.rule-num{
+  font-family:'Orbitron',monospace;font-weight:900;font-size:13px;
+  color:var(--green);display:block;margin-bottom:12px;letter-spacing:2px;
+}
+.rule-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:17px;text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:8px}
+.rule-desc{font-size:13px;color:var(--gray);line-height:1.65}
+
+/* ══ PARTNERS LOGOS ══ */
+#partners-logos{background:var(--dark);border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center}
+.logos-org{display:inline-flex;gap:0;border:1px solid rgba(255,255,255,0.08);margin-bottom:44px}
+.logo-org-box{width:190px;height:60px;background:#fff;display:flex;align-items:center;justify-content:center;padding:10px 18px;border-right:1px solid rgba(0,0,0,0.08)}
+.logo-org-box:last-child{border-right:none}
+.logo-org-box img{max-width:150px;max-height:36px;object-fit:contain}
+.plogos-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.05);max-width:1100px;margin:0 auto}
+.plogo{background:#fff;height:76px;display:flex;align-items:center;justify-content:center;padding:12px 16px}
+.plogo img{max-width:135px;max-height:48px;object-fit:contain}
+
+/* ══ FOOTER ══ */
+footer{padding:44px 40px;text-align:center;border-top:1px solid var(--line);background:var(--black)}
+.foot-line{width:120px;height:2px;background:var(--green);margin:0 auto 24px}
+.foot-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:24px;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.foot-copy{font-size:11px;color:var(--gray);letter-spacing:1px;line-height:1.8}
+
+/* ══ REVEAL ══ */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .9s ease,transform .9s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:960px){
+  .prizes-grid{grid-template-columns:1fr 1fr}
+  .checkpoints{grid-template-columns:1fr 1fr;gap:24px}
+  .checkpoints::before{display:none}
+  .rules-grid{grid-template-columns:1fr 1fr}
+  .plogos-grid{grid-template-columns:repeat(3,1fr)}
+  .lb-row{grid-template-columns:44px 1fr 90px;gap:12px}
+  .lb-bar{display:none}
+  nav .nav-links{display:none}
+}
+@media(max-width:600px){
+  .prizes-grid{grid-template-columns:1fr}
+  .rules-grid{grid-template-columns:1fr}
+  .plogos-grid{grid-template-columns:1fr 1fr}
+  .checkpoints{grid-template-columns:1fr}
+  .sec{padding:70px 22px}
+  #hero{padding:90px 22px 50px}
+  .logos-org{flex-direction:column}
+  .logo-org-box{border-right:none;border-bottom:1px solid rgba(0,0,0,0.08)}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">BREAK<b>THE</b>LINE</a>
+  <ul class="nav-links">
+    <li><a href="#standings">Live Standings</a></li>
+    <li><a href="#prizes">Prizes</a></li>
+    <li><a href="#track">The Track</a></li>
+    <li><a href="#rules">Regulations</a></li>
+  </ul>
+  <div class="nav-live"><div class="live-dot"></div>RACE LIVE</div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <video class="hero-bg" autoplay muted loop playsinline>
+    <source src="hero-video.webm" type="video/webm">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">MBCOM TECHNOLOGIES &nbsp;//&nbsp; PARTNER ACCELERATION PROGRAM 2026</div>
+    <h1 class="hero-title">
+      <span class="break-word">BREAK</span>
+      <span class="line-word">THE LINE</span>
+    </h1>
+    <div class="the-line"></div>
+    <p class="hero-sub">SAME TRACK. HIGHER POSSIBILITIES.</p>
+    <p class="hero-tagline">The race continues. Same partners, same racing spirit — a new reason to push further. Growth is the only metric that matters.</p>
+    <div class="hero-stats">
+      <div class="hstat"><span class="hstat-val">45</span><span class="hstat-lbl">Race Days</span></div>
+      <div class="hstat"><span class="hstat-val">10</span><span class="hstat-lbl">Partners</span></div>
+      <div class="hstat"><span class="hstat-val">4</span><span class="hstat-lbl">Ways to Win</span></div>
+      <div class="hstat"><span class="hstat-val" id="days-left">--</span><span class="hstat-lbl">Days Left</span></div>
+    </div>
+    <div class="hero-cta">
+      <a href="#standings" class="btn-main">Live Standings</a>
+      <a href="#prizes" class="btn-ghost">View Prizes &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>BREAK THE LINE</span><span>01 SEP &ndash; 15 OCT 2026</span><span>DRIVEN BY PARTNERS. POWERED BY GROWTH.</span><span>4 WAYS TO WIN</span><span>WEEKLY STANDINGS</span><span>MBCOM TECHNOLOGIES</span>
+    <span>BREAK THE LINE</span><span>01 SEP &ndash; 15 OCT 2026</span><span>DRIVEN BY PARTNERS. POWERED BY GROWTH.</span><span>4 WAYS TO WIN</span><span>WEEKLY STANDINGS</span><span>MBCOM TECHNOLOGIES</span>
+  </div>
+</div>
+
+<!-- LIVE STANDINGS -->
+<section id="standings" class="sec">
+  <div class="sec-inner">
+    <div class="lb-head">
+      <div>
+        <div class="sec-tag">// LIVE STANDINGS</div>
+        <h2 class="sec-title">The Leaderboard</h2>
+        <p class="sec-sub">Published weekly by MBCOM. Every partner sees the field. Growth % measured against the agreed baseline.</p>
+      </div>
+      <div class="lb-update"><div class="live-dot" style="background:var(--green)"></div>UPDATED WEEKLY</div>
+    </div>
+
+    <div class="lb-list reveal">
+
+      <div class="lb-row podium-1">
+        <div class="lb-pos">01</div>
+        <div class="lb-name">Taqniyat Company for Software Solutions<small>TQN // SOFTWARE &amp; TELECOM</small></div>
+        <div class="lb-growth">82<small>%</small></div>
+        <div class="lb-bar"><div class="lb-fill" data-w="82"></div></div>
+      </div>
+
+      <div class="lb-row podium-2">
+        <div class="lb-pos">02</div>
+        <div class="lb-name">Aspiring Technologies Co. Ltd.<small>ATCL // TECHNOLOGY</small></div>
+        <div class="lb-growth">65<small>%</small></div>
+        <div class="lb-bar"><div class="lb-fill" data-w="65"></div></div>
+      </div>
+
+      <div class="lb-row podium-3">
+        <div class="lb-pos">03</div>
+        <div class="lb-name">Ultimate Solutions Company<small>USC // SOLUTIONS</small></div>
+        <div class="lb-growth">57<small>%</small></div>
+        <div class="lb-bar"><div class="lb-fill" data-w="57"></div></div>
+      </div>
+
+      <div class="lb-row">
+        <div class="lb-pos">04</div>
+        <div class="lb-name">Diyar Middle East for Information Technology<small>DIYAR // IT SERVICES</small></div>
+        <div class="lb-growth">45<small>%</small></div>
+        <div class="lb-bar"><div class="lb-fill" data-w="45"></div></div>
+      </div>
+
+      <div class="lb-row">
+        <div class="lb-pos">05</div>
+        <div class="lb-name">National Computer Systems Company<small>NATCOM // SYSTEMS</small></div>
+        <div class="lb-growth">37<small>%</small></div>
+        <div class="lb-bar"><div class="lb-fill" data-w="37"></div></div>
+      </div>
+
+      <div class="lb-row">
+        <div class="lb-pos">06</div>
+        <div class="lb-name">Nahil Computers<small>NAHIL // COMPUTING</small></div>
+        <div class="lb-growth">35<small>%</small></div>
+        <div class="lb-bar"><div class="lb-fill" data-w="35"></div></div>
+      </div>
+
+      <div class="lb-row">
+        <div class="lb-pos">07</div>
+        <div class="lb-name">MDS for Computer Systems<small>MDS // SYSTEMS</small></div>
+        <div class="lb-growth">23<small>%</small></div>
+        <div class="lb-bar"><div class="lb-fill" data-w="23"></div></div>
+      </div>
+
+      <div class="lb-row">
+        <div class="lb-pos">08</div>
+        <div class="lb-name">Axelerated Solutions Co SA<small>AXS // SOLUTIONS</small></div>
+        <div class="lb-growth">17<small>%</small></div>
+        <div class="lb-bar"><div class="lb-fill" data-w="17"></div></div>
+      </div>
+
+      <div class="lb-row">
+        <div class="lb-pos">09</div>
+        <div class="lb-name">Al Moammar Information Systems<small>MIS // INFORMATION SYSTEMS</small></div>
+        <div class="lb-growth">2<small>%</small></div>
+        <div class="lb-bar"><div class="lb-fill" data-w="2"></div></div>
+      </div>
+
+      <div class="lb-row">
+        <div class="lb-pos">10</div>
+        <div class="lb-name">New Dimensions Technology<small>ND // TECHNOLOGY</small></div>
+        <div class="lb-growth">0<small>%</small></div>
+        <div class="lb-bar"><div class="lb-fill" data-w="0"></div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PRIZES -->
+<section id="prizes" class="sec">
+  <div class="prizes-bg"></div>
+  <div class="prizes-overlay"></div>
+  <div class="sec-inner" style="position:relative;z-index:2">
+    <div class="sec-tag">// WINNING CATEGORIES</div>
+    <h2 class="sec-title">4 Ways to Win</h2>
+    <p class="sec-sub">Four award categories. One campaign. Every partner has a lane to win in.</p>
+
+    <div class="prizes-grid reveal">
+      <div class="prize">
+        <span class="prize-cat">// Achievement</span>
+        <span class="prize-icon">&#8986;</span>
+        <span class="prize-name">Apple Watch</span>
+        <p class="prize-desc">Who achieved the target.</p>
+      </div>
+      <div class="prize">
+        <span class="prize-cat">// Fastest Achievement</span>
+        <span class="prize-icon">&#128241;</span>
+        <span class="prize-name">iPhone 18</span>
+        <p class="prize-desc">Who is the fastest to achieve.</p>
+      </div>
+      <div class="prize">
+        <span class="prize-cat">// Largest Achievement</span>
+        <span class="prize-icon">&#9992;</span>
+        <span class="prize-name">Trip to London</span>
+        <p class="prize-desc">Who has the largest achievement.</p>
+      </div>
+      <div class="prize">
+        <span class="prize-cat">// Most Transactions</span>
+        <span class="prize-icon">&#127903;</span>
+        <span class="prize-name">SAR 2,000 Voucher</span>
+        <p class="prize-desc">Largest number of transactions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RACE FEEL -->
+<section id="racefeel">
+  <div class="racefeel-bg"></div>
+  <div class="racefeel-overlay"></div>
+  <div class="racefeel-content">
+    <div class="sec-tag">// THE RACE CONTINUES</div>
+    <p class="racefeel-quote">Same grid. A new race.<br><em>Every partner starts from the same line.</em></p>
+  </div>
+</section>
+
+<!-- THE TRACK -->
+<section id="track" class="sec">
+  <div class="sec-inner">
+    <div class="sec-tag">// THE GROWTH TRACK</div>
+    <h2 class="sec-title">Five Checkpoints</h2>
+    <p class="sec-sub">From start to finish — Growth % is the metric on every one. 01 September &ndash; 15 October 2026.</p>
+
+    <div class="checkpoints reveal">
+      <div class="cpt">
+        <div class="cpt-node">S</div>
+        <span class="cpt-name">Start</span>
+        <p class="cpt-desc">Baseline agreed. The race opens 01 September.</p>
+      </div>
+      <div class="cpt">
+        <div class="cpt-node">G</div>
+        <span class="cpt-name">Growth</span>
+        <p class="cpt-desc">Growth measured against the baseline.</p>
+      </div>
+      <div class="cpt">
+        <div class="cpt-node">M</div>
+        <span class="cpt-name">Momentum</span>
+        <p class="cpt-desc">Pipeline converting. Weekly standings published.</p>
+      </div>
+      <div class="cpt">
+        <div class="cpt-node">A</div>
+        <span class="cpt-name">Acceleration</span>
+        <p class="cpt-desc">Final push. Transactions and scale decide positions.</p>
+      </div>
+      <div class="cpt">
+        <div class="cpt-node">F</div>
+        <span class="cpt-name">Finish</span>
+        <p class="cpt-desc">Race closes 15 October. Winners confirmed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RULES -->
+<section id="rules" class="sec" style="background:var(--dark);border-top:1px solid var(--line)">
+  <div class="sec-inner">
+    <div class="sec-tag">// RACE REGULATIONS</div>
+    <h2 class="sec-title">The Rules</h2>
+    <p class="sec-sub">Clear terms. Clean race. Every partner competes on the same basis.</p>
+
+    <div class="rules-grid reveal">
+      <div class="rule">
+        <span class="rule-num">R1</span>
+        <span class="rule-name">Eligibility Window</span>
+        <p class="rule-desc">Only business booked, invoiced and recognised during the race period counts.</p>
+      </div>
+      <div class="rule">
+        <span class="rule-num">R2</span>
+        <span class="rule-name">Cancellations</span>
+        <p class="rule-desc">Cancelled deals are excluded from growth and transaction counts.</p>
+      </div>
+      <div class="rule">
+        <span class="rule-num">R3</span>
+        <span class="rule-name">Audit Rights</span>
+        <p class="rule-desc">MBCOM reserves the right to validate and audit all transactions.</p>
+      </div>
+      <div class="rule">
+        <span class="rule-num">R4</span>
+        <span class="rule-name">Tie Breaker</span>
+        <p class="rule-desc">Where results are level, the earliest validated timestamp takes the position.</p>
+      </div>
+      <div class="rule">
+        <span class="rule-num">R5</span>
+        <span class="rule-name">Purchase Orders</span>
+        <p class="rule-desc">All purchase orders must comply with Broadcom standard rules.</p>
+      </div>
+      <div class="rule">
+        <span class="rule-num">R6</span>
+        <span class="rule-name">Growth Thresholds</span>
+        <p class="rule-desc">Growth target, baseline and thresholds to be confirmed by the client.</p>
+      </div>
+    </div>
+
+    <p style="text-align:center;margin-top:44px;font-family:'Share Tech Mono',monospace;font-size:13px;letter-spacing:3px;color:var(--green)">PLAY HARD. PLAY CLEAN. PLAY TO WIN.</p>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section id="partners-logos" class="sec">
+  <div class="sec-inner">
+    <div class="sec-tag" style="text-align:center">// ORGANIZED BY</div>
+    <div style="margin-bottom:16px"></div>
+    <div class="logos-org">
+      <div class="logo-org-box"><img src="logos/broadcom.png" alt="Broadcom"></div>
+      <div class="logo-org-box"><img src="logos/vmware.png" alt="VMware"></div>
+      <div class="logo-org-box"><img src="logos/mbcom.png" alt="MBCOM"></div>
+    </div>
+
+    <div class="sec-tag" style="text-align:center;margin-bottom:24px">// 10 INVITED PARTNERS — ONE LEAGUE</div>
+    <div class="plogos-grid reveal">
+      <div class="plogo"><img src="logos/taqniyat.webp" alt="Taqniyat"></div>
+      <div class="plogo"><img src="logos/aspiring.jpg" alt="Aspiring Technologies"></div>
+      <div class="plogo"><img src="logos/usc-official.jpg" alt="USC"></div>
+      <div class="plogo"><img src="logos/diyar.png" alt="Diyar"></div>
+      <div class="plogo"><img src="logos/ncs.jpg" alt="NATCOM"></div>
+      <div class="plogo"><img src="logos/nahil.png" alt="Nahil"></div>
+      <div class="plogo"><img src="logos/mds.png" alt="MDS"></div>
+      <div class="plogo"><img src="logos/axelerated.png" alt="Axelerated"></div>
+      <div class="plogo"><span style="font-family:'Orbitron',monospace;font-size:12px;font-weight:700;color:#003366;">AL MOAMMAR (MIS)</span></div>
+      <div class="plogo"><img src="logos/newdimensions.png" alt="New Dimensions"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-line"></div>
+  <div class="foot-title">The finish line is only the beginning.</div>
+  <p class="foot-copy">
+    BREAK THE LINE &middot; MBCOM Partner Acceleration Program<br>
+    01 September &ndash; 15 October 2026 &middot; Driven by Partners. Powered by Growth.<br>
+    BROADCOM PROPRIETARY AND CONFIDENTIAL
+  </p>
+</footer>
+
+<script>
+// Days left counter
+(function(){
+  const end = new Date('2026-10-15T23:59:59');
+  const now = new Date();
+  const days = Math.max(0, Math.ceil((end - now) / 86400000));
+  document.getElementById('days-left').textContent = days;
+})();
+
+// Scroll reveal
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: .08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Animate leaderboard bars
+const lbObs = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if(e.isIntersecting){
+      setTimeout(() => {
+        document.querySelectorAll('.lb-fill[data-w]').forEach(f => {
+          f.style.width = f.dataset.w + '%';
+        });
+      }, 300);
+    }
+  });
+}, { threshold: .15 });
+const st = document.getElementById('standings');
+if(st) lbObs.observe(st);
+</script>
+</body>
+</html>
